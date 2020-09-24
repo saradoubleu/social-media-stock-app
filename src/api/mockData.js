@@ -7,7 +7,7 @@ export const data = {
   socialMediaPosts: 0,
 };
 
-export const socialMedia = [
+export const socialMediaData = [
   { name: "Twitter" },
   { name: "Instagram" },
   { name: "Facebook" },

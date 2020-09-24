@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import Autosuggest from "react-autosuggest";
-import { stockData } from "../../api/mockData";
 import "./Autosuggest.css";
 
 // react autosuggest library  https://github.com/moroshko/react-autosuggest#installation
-const getSuggestions = (value, data) => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
 
-  return inputLength === 0
-    ? []
-    : stockData.filter(
-        (stock) => stock.name.toLowerCase().slice(0, inputLength) === inputValue
-      );
-};
-
-const getSuggestionValue = (suggestion) => {
-  console.log(suggestion);
-
-  return suggestion.symbol + " - " + suggestion.name;
-};
-
-const renderSuggestion = (suggestion) => (
-  <div>{suggestion.symbol + " - " + suggestion.name}</div>
-);
-
-const Autosuggester = () => {
+const Autosuggester = (props) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+
+  const getSuggestions = (value, data) => {
+    let dataSource = props.data;
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0
+      ? []
+      : dataSource.filter(
+          (stock) =>
+            stock.name.toLowerCase().slice(0, inputLength) === inputValue
+        );
+  };
+
+  const getSuggestionValue = (suggestion) => {
+    if (suggestion.symbol) {
+      return suggestion.symbol + " - " + suggestion.name;
+    } else {
+      return suggestion.name;
+    }
+  };
+
+  const renderSuggestion = (suggestion) =>
+    suggestion.symbol ? (
+      <div>{suggestion.symbol + " - " + suggestion.name}</div>
+    ) : (
+      <div>{suggestion.name}</div>
+    );
 
   const onChange = (event, { newValue }) => {
     setValue(newValue);
@@ -42,7 +49,7 @@ const Autosuggester = () => {
   };
 
   const inputProps = {
-    placeholder: "Enter stock symbol or name",
+    placeholder: props.placeholder,
     value,
     onChange: onChange,
   };

@@ -1,5 +1,9 @@
 {
   "hello": "hi sara",
   "search": "search",
-  "reset": "reset"
+  "reset": "reset",
+  "day": "day",
+  "days": "days",
+  "placeholder_stock": "Enter stock symbol or name",
+  "placeholder_socialmedia": "Enter social media"
 }
