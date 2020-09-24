@@ -1,12 +1,8 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header/Header";
 import SearchStocks from "./SearchStockSymbol/SearchStockSymbol";
 import Suggestions from "./Suggestions/Suggestions";
-import { stockData } from "../api/mockData";
-
-/*To Do:
-typescript: socialMediaType
-*/
+import { instance as axios } from "../api/mockStockAPI";
 
 export const sumOfCharacters = (symbol) => {
   let sum = 0;
@@ -16,13 +12,6 @@ export const sumOfCharacters = (symbol) => {
   }
 
   return sum;
-};
-
-export const stockPriceGenerator = (stockSymbol, dates) => {
-  sumOfCharacters(stockSymbol);
-
-  //must use Math.random
-  // do something with dates
 };
 
 export const socialMediaCountGenerator = (stockSymbol, socialMediaType) => {
@@ -36,32 +25,52 @@ export const socialMediaCountGenerator = (stockSymbol, socialMediaType) => {
     (sumOfStockSymbols + sumOfSocialMediaTypes) * (Math.random() * 50)
   );
 
-  console.log(socialMediaCount);
   return socialMediaCount;
 };
 
-export default class App extends Component {
-  state = { stock: [] };
+export const stockPriceGenerator = (stockSymbol, dates) => {
+  let sumOfStockSymbol = stockSymbol ? sumOfCharacters(stockSymbol) : 0;
+  let stockPrice = sumOfStockSymbol * Math.random() + sumOfStockSymbol;
+  let roundedSumOfStockPrice = Math.round(stockPrice * 100) / 100;
 
-  onSearchSubmit = async (searchTerm) => {
+  return roundedSumOfStockPrice;
+  // do something with dates or for future implementation??
+};
+
+const App = () => {
+  const [stock, setStock] = useState([]);
+
+  useEffect(() => {
+    onSearchSubmit();
+    // axios
+    //   .get("http://localhost:3000/stockData")
+    //   .then((response) => console.log("GET ", response));
+  }, []);
+
+  const onSearchSubmit = () => {
     try {
-      //API Request of Stock Data
-      const response = stockData;
+      axios.get("http://localhost:3000/stockData").then((response) => {
+        console.log("GET ", response.data);
+      });
     } catch (error) {
       console.error(error);
     }
-    this.setState({ stock: "" });
+    // setStock(stock);
   };
 
-  render() {
-    socialMediaCountGenerator("NVDA", "instagram");
+  return (
+    <div className="stock-wrapper">
+      <Header />
+      <SearchStocks onSubmit={onSearchSubmit} />
+      <p>
+        social media count:
+        {socialMediaCountGenerator("NVDA", "instagram")}
+        <br></br>
+        stockPrice: {stockPriceGenerator("NVDA")}
+      </p>
+      <Suggestions stock={stock} />
+    </div>
+  );
+};
 
-    return (
-      <div className="stock-wrapper">
-        <Header />
-        <SearchStocks onSubmit={this.onSearchSubmit} />
-        {/* <Suggestions data={} />{" "} */}
-      </div>
-    );
-  }
-}
+export default App;
