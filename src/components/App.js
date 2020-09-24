@@ -42,32 +42,32 @@ const App = () => {
 
   useEffect(() => {
     onSearchSubmit();
-    // axios
-    //   .get("http://localhost:3000/stockData")
-    //   .then((response) => console.log("GET ", response));
   }, []);
 
-  const onSearchSubmit = () => {
+  const onSearchSubmit = async (searchTerm) => {
     try {
-      axios.get("http://localhost:3000/stockData").then((response) => {
-        console.log("GET ", response.data);
+      const response = await axios.get("http://localhost:3000/stockData", {
+        params: {
+          query: searchTerm,
+        },
       });
+      setStock(response.data);
     } catch (error) {
       console.error(error);
     }
-    // setStock(stock);
+    console.log("searchTerm ", searchTerm);
   };
 
   return (
     <div className="stock-wrapper">
       <Header />
-      <SearchStocks onSubmit={onSearchSubmit} />
-      <p>
+      <SearchStocks data={stock} onSubmit={onSearchSubmit} />
+      {/* <p>
         social media count:
         {socialMediaCountGenerator("NVDA", "instagram")}
         <br></br>
         stockPrice: {stockPriceGenerator("NVDA")}
-      </p>
+      </p> */}
       <Suggestions stock={stock} />
     </div>
   );
