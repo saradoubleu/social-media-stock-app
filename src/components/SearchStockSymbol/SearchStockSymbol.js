@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
+import DropDown from "../DropDown/DropDown";
+import Autosuggester from "../Autosuggest/Autosuggest";
 import { useTranslation } from "react-i18next";
 
 //BUTTON
@@ -8,6 +10,7 @@ import { useTranslation } from "react-i18next";
 
 //input
 //autocomplete
+//time window default 10 days(including today)
 const SearchStockSymbol = (props) => {
   const [searchterm, setSearchterm] = useState("");
 
@@ -28,6 +31,12 @@ const SearchStockSymbol = (props) => {
           value={searchterm}
           onChange={(e) => setSearchterm(e.target.value)}
         ></input>
+        <br></br>
+        <br></br>
+        <Autosuggester />
+        <br></br>
+        <DropDown />
+        <br></br>
         <Button
           className="submit-button"
           onClick={(event) => onFormSubmit(event)}
