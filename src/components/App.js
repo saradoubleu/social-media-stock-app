@@ -4,7 +4,11 @@ import SearchStocks from "./SearchStockSymbol/SearchStockSymbol";
 import Suggestions from "./Suggestions/Suggestions";
 import { stockData } from "../api/mockData";
 
-export const sumOfStockSymbolChars = (symbol) => {
+/*To Do:
+typescript: socialMediaType
+*/
+
+export const sumOfCharacters = (symbol) => {
   let sum = 0;
 
   for (let i = 0; i < symbol.length; i++) {
@@ -14,14 +18,24 @@ export const sumOfStockSymbolChars = (symbol) => {
   return sum;
 };
 
-// console.log(sumOfStockSymbolChars("CRM"));
-
 export const stockPriceGenerator = (stockSymbol, dates) => {
-  //take symbol
-  //each letter of alphabet equates to a value
-  //sum the value
-  sumOfStockSymbolChars(stockSymbol);
-  //multiply it by
+  sumOfCharacters(stockSymbol);
+
+  //must use Math.random
+  // do something with dates
+};
+
+export const socialMediaCountGenerator = (stockSymbol, socialMediaType) => {
+  let socialMediaCount = 0;
+  let sumOfStockSymbols = stockSymbol ? sumOfCharacters(stockSymbol) : 0;
+  let sumOfSocialMediaTypes = socialMediaType
+    ? sumOfCharacters(socialMediaType)
+    : 0;
+
+  socialMediaCount =
+    (sumOfStockSymbols + sumOfSocialMediaTypes) * (Math.random() * 50);
+
+  return socialMediaCount;
 };
 
 export default class App extends Component {
@@ -38,6 +52,7 @@ export default class App extends Component {
   };
 
   render() {
+    socialMediaCountGenerator("NVDA", "instagram");
     console.log(
       "STOCK: ",
       stockData.map((el) => el.name)
