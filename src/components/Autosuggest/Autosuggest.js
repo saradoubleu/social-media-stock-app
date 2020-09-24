@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import Autosuggest from "react-autosuggest";
 import { stockData } from "../../api/mockData";
 import "./Autosuggest.css";
@@ -21,7 +21,9 @@ const getSuggestionValue = (suggestion) => {
   return suggestion.symbol + " - " + suggestion.name;
 };
 
-const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
+const renderSuggestion = (suggestion) => (
+  <div>{suggestion.symbol + " - " + suggestion.name}</div>
+);
 
 const Autosuggester = () => {
   const [value, setValue] = useState("");
