@@ -32,9 +32,11 @@ export const socialMediaCountGenerator = (stockSymbol, socialMediaType) => {
     ? sumOfCharacters(socialMediaType)
     : 0;
 
-  socialMediaCount =
-    (sumOfStockSymbols + sumOfSocialMediaTypes) * (Math.random() * 50);
+  socialMediaCount = Math.round(
+    (sumOfStockSymbols + sumOfSocialMediaTypes) * (Math.random() * 50)
+  );
 
+  console.log(socialMediaCount);
   return socialMediaCount;
 };
 
@@ -53,10 +55,7 @@ export default class App extends Component {
 
   render() {
     socialMediaCountGenerator("NVDA", "instagram");
-    console.log(
-      "STOCK: ",
-      stockData.map((el) => el.name)
-    );
+
     return (
       <div className="stock-wrapper">
         <Header />
