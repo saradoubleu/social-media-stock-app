@@ -8,14 +8,17 @@ const Autosuggester = (props) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  const getSuggestions = (value, data) => {
-    let dataSource = props.data;
+  console.log("Auto: ", props);
+
+  const getSuggestions = (value) => {
+    const { data } = props;
+
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
     return inputLength === 0
       ? []
-      : dataSource.filter(
+      : data.filter(
           (stock) =>
             stock.name.toLowerCase().slice(0, inputLength) === inputValue
         );

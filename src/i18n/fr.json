@@ -1,3 +1,6 @@
 {
-  "hello": "bonjour"
+  "hello": "bonjour",
+  "search": "chercher",
+  "day": "jour",
+  "days": "jours"
 }

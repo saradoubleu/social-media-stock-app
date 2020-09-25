@@ -3,17 +3,12 @@ import Button from "../Button/Button";
 import DropDown from "../DropDown/DropDown";
 import Autosuggester from "../Autosuggest/Autosuggest";
 import { useTranslation } from "react-i18next";
-import { stockData, socialMediaData } from "../../api/mockData";
+import "./SearchStockSymbol.css";
 
-//BUTTON
-//pass style
-//pass the action
-
-//input
-//autocomplete
-//time window default 10 days(including today)
 const SearchStockSymbol = (props) => {
   const [searchterm, setSearchterm] = useState("");
+
+  // console.log("SearchStockSymbol: ", props);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -21,35 +16,25 @@ const SearchStockSymbol = (props) => {
   };
 
   const { t } = useTranslation();
+  const { data } = props;
+
+  console.log("SearchStockSymbol ", props);
   return (
     <div className="search-bar-wrapper">
       <form onSubmit={(event) => this.onFormSubmit(event)}>
-        {/* <label htmlFor="search">Search</label> */}
-        {/* <input
-          id="search"
-          type="text"
-          name="search"
-          value={searchterm}
-          onChange={(e) => setSearchterm(e.target.value)}
-        ></input> */}
-        <br></br>
-        <br></br>
-        <Autosuggester placeholder={t("placeholder_stock")} data={stockData} />
-        <Autosuggester
-          placeholder={t("placeholder_socialmedia")}
-          data={socialMediaData}
-        />
-        <br></br>
-        <DropDown />
-        <br></br>
-        <Button
-          className="submit-button"
-          onClick={(event) => onFormSubmit(event)}
-          type="submit"
-          label={t("hello")}
-        />
+        <span>
+          <Autosuggester placeholder={t("placeholder_stock")} data={data} />
+        </span>
+        {/* <span>
+          <Autosuggester placeholder={t("placeholder_stock")} data={data} />
+        </span> */}
+        <span>
+          <DropDown />
+        </span>
+        <span>
+          <Button className="submit-button" type="submit" value={t("search")} />
+        </span>
       </form>
-      <hr />
     </div>
   );
 };

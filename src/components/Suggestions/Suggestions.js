@@ -1,11 +1,11 @@
 import React from "react";
-import { stockData } from "../../api/mockData";
+import "./Suggestions.css";
 
 const Suggestions = (props) => {
-  console.log("Sugg: ", props);
-  let stockDetails = props;
+  let { stock } = props;
+  // let stock = null;
 
-  const stockSummary = stockDetails ? (
+  const stockSummary = stock ? (
     <table>
       <thead>
         <tr>
@@ -16,7 +16,7 @@ const Suggestions = (props) => {
         </tr>
       </thead>
       <tbody>
-        {stockData.map((item, i) => {
+        {stock.map((item, i) => {
           return (
             <tr key={item.id}>
               <td>{item.symbol}</td>
@@ -32,7 +32,15 @@ const Suggestions = (props) => {
     <div>no result found</div>
   );
 
-  return <div> {stockSummary} </div>;
+  return (
+    <div className="suggestions-wrapper">
+      {" "}
+      <br></br>
+      <br></br>
+      <br></br>
+      {stockSummary}{" "}
+    </div>
+  );
 };
 
 export default Suggestions;

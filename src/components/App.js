@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <div className="stock-wrapper">
-      <Header />
+      <Header data={stock} />
       <SearchStocks data={stock} onSubmit={onSearchSubmit} />
       {/* <p>
         social media count:

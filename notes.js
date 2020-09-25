@@ -2,8 +2,6 @@
 Background
 - you’ve noticed a correlation between the various social media posts on a stock symbol and that share price for that stock symbol.
 - You’ve decided to build an app that can provide a buy, hold or sell recommendation when given a stock symbol. The recommendation adjusts itself based on data.
-- While you look at building your backend, you’ve decided to start working on the frontend today.
-
 
 
 Technical Requirements
@@ -48,6 +46,10 @@ Visual Requirements
 
 ASSMPTIONS
 - FrontEnd Project ONLY based on - ...start working on the frontend today
-
+- must use own styles guidelines instead of a library
+- socialMediaCountGenerator - doesn't take an array of types only singular "social media type"
+- stockData based on list of best stocks september 2020 (https://www.nerdwallet.com/blog/investing/best-performing-stocks/)
+Features
+- 🏴󠁣󠁡󠁱󠁣󠁿 i18n
 
 */
