@@ -55,7 +55,7 @@ const App = () => {
     } catch (error) {
       console.error(error);
     }
-    console.log("searchTerm ", searchTerm);
+    // console.log("searchTerm ", searchTerm);
   };
 
   return (
