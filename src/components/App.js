@@ -46,11 +46,7 @@ const App = () => {
 
   const onSearchSubmit = async (searchTerm) => {
     try {
-      const response = await axios.get("http://localhost:3000/stockData", {
-        params: {
-          query: searchTerm,
-        },
-      });
+      const response = await axios.get("http://localhost:3000/stockData");
       setStock(response.data);
     } catch (error) {
       console.error(error);
@@ -62,12 +58,6 @@ const App = () => {
     <div className="stock-wrapper">
       <Header data={stock} />
       <SearchStocks data={stock} onSubmit={onSearchSubmit} />
-      {/* <p>
-        social media count:
-        {socialMediaCountGenerator("NVDA", "instagram")}
-        <br></br>
-        stockPrice: {stockPriceGenerator("NVDA")}
-      </p> */}
       <Suggestions stock={stock} />
     </div>
   );

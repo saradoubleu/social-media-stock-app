@@ -1,4 +1,4 @@
-#number-of-days {
+.number-of-days {
   width: 140px;
   height: 52px;
   padding: 10px;
@@ -7,4 +7,32 @@
   font-size: 16px;
   border-radius: 4px;
   border: 1px solid #aaa;
+}
+
+.social-styling {
+  width: 155px;
+  height: 52px;
+  padding: 10px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+
+select > option {
+  color: red;
+  background: red;
+  display: block;
+  position: absolute;
+  top: 51px;
+  width: 280px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
 }

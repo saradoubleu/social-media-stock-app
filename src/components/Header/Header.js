@@ -10,8 +10,7 @@ const Header = (props) => {
       <div className="marquee__inner" aria-hidden="true">
         <span>
           {data.map((el) => {
-            // console.log(el.symbol);
-            return <span>{el.symbol}</span>;
+            return <span key={el.id}>{el.symbol}</span>;
           })}
         </span>
       </div>{" "}

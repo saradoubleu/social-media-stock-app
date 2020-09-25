@@ -1,3 +1,19 @@
+##Work in progress -- Very incomplete solution!!!
+To Do:
+
+- recommendationAlgorithm()
+- modify stockPriceGenerator() to take into account date
+- add typescript
+- refactor code for better modularity
+- style
+- some a11y considerations made
+- tests
+- implement 118n
+- update readME
+- performance considerations
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
